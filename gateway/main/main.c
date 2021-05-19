@@ -286,7 +286,12 @@ static void ble_mesh_custom_model_cb(esp_ble_mesh_model_cb_event_t event,
         logger(str, BLUE);
 
         // log
-        ESP_LOGI("[!]", ",recv,%d,", *c);
+        ESP_LOGI("[!]", ",recv,%d,%d,%d,%d,",
+            *c,
+            param->client_recv_publish_msg.length,
+            param->client_recv_publish_msg.ctx->recv_ttl,
+            param->client_recv_publish_msg.ctx->recv_rssi
+            );
     
         // 測試一, 直接回傳 ble mesh packet
         esp_ble_mesh_msg_ctx_t ctx = {0};
